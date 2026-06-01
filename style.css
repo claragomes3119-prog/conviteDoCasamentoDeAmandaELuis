@@ -5,8 +5,8 @@
     --cor-fundo: #fbf9f4;
     --cor-texto: #5c4d3c;
     --cor-dourado: #c4a468;
-    --cor-botao: #1b3d32; /* Verde escuro idêntico ao convite */
-    --cor-selo: #3b597d;   /* Azul clássico do selo de cera */
+    --cor-botao: #1b3d32; /* Verde escuro do convite */
+    --cor-selo: #3b597d;   /* Azul do selo de cera CH da imagem */
 }
 
 body {
@@ -20,22 +20,22 @@ body {
     align-items: center;
     min-height: 100vh;
     overflow-x: hidden;
-    /* Pontilhado elegante de fundo */
+    /* Fundo sutil texturizado */
     background-image: radial-gradient(rgba(196, 164, 104, 0.1) 1px, transparent 0);
     background-size: 24px 24px;
 }
 
-/* Container principal que gerencia o efeito 3D */
+/* Container do efeito 3D */
 .wrapper-casamento {
     position: relative;
     max-width: 600px;
     width: 100%;
     margin: 20px;
-    perspective: 1200px; /* Profundidade do efeito de abertura */
+    perspective: 1200px; 
 }
 
 /* ==========================================================================
-   2. ESTRUTURA DO ENVELOPE (ABAS LATERAIS)
+   2. ESTRUTURA DO ENVELOPE (ABAS QUE SE ABREM)
    ========================================================================== */
 .envelope {
     position: absolute;
@@ -45,7 +45,7 @@ body {
     height: 100%;
     z-index: 10;
     display: flex;
-    pointer-events: none; /* Permite o clique passar direto para o selo */
+    pointer-events: none; /* Permite clicar no selo por trás */
 }
 
 .aba {
@@ -69,7 +69,7 @@ body {
     background-image: linear-gradient(to left, #f5f2eb, #eae6dc);
 }
 
-/* Efeito decorativo simulando folhagens nas abas */
+/* Elementos florais decorativos nas abas */
 .aba-esquerda::after, .aba-direita::after {
     content: '🌿';
     position: absolute;
@@ -81,7 +81,7 @@ body {
 .aba-direita::after { left: 15px; }
 
 /* ==========================================================================
-   3. ANIMAÇÃO DE ABERTURA (Disparada pelo JavaScript)
+   3. ANIMAÇÃO DE ABERTURA LATERIAL
    ========================================================================== */
 .wrapper-casamento.aberto .aba-esquerda {
     transform: translateX(-100%) rotateY(-35deg);
@@ -94,7 +94,7 @@ body {
 }
 
 /* ==========================================================================
-   4. O BOTÃO DO SELO DE CERA
+   4. BOTÃO DO SELO DE CERA E TEXTO INFERIOR
    ========================================================================== */
 .selo-container {
     position: absolute;
@@ -136,7 +136,7 @@ body {
     animation: pulsar 1.6s infinite ease-in-out;
 }
 
-/* Ocultação do selo após a ativação */
+/* Oculta o selo e o texto após o clique */
 .wrapper-casamento.aberto .selo-container {
     transform: translate(-50%, -50%) scale(0);
     opacity: 0;
@@ -150,7 +150,7 @@ body {
 }
 
 /* ==========================================================================
-   5. O CONVITE INTERNO (CONTEÚDO)
+   5. DESIGN DO CONVITE INTERNO
    ========================================================================== */
 .convite-container {
     width: 100%;
@@ -166,13 +166,11 @@ body {
     transition: all 1s cubic-bezier(0.25, 1, 0.5, 1) 0.2s;
 }
 
-/* Revelação nítida ao abrir */
 .wrapper-casamento.aberto .convite-container {
     opacity: 1;
     transform: scale(1);
 }
 
-/* Tipografia interna */
 .header-coracao {
     font-size: 24px;
     color: var(--cor-dourado);
@@ -208,7 +206,7 @@ body {
     margin: 30px 0;
 }
 
-/* Grid de Informações de Local e Hora */
+/* Grade de informações (Data, Hora, Local) */
 .info-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -245,7 +243,7 @@ body {
 }
 
 /* ==========================================================================
-   6. CARDS E BOTÕES INTERATIVOS
+   6. CARDS INTERATIVOS E BOTÕES
    ========================================================================== */
 .botoes-grid {
     display: grid;
@@ -307,7 +305,7 @@ body {
 }
 
 /* ==========================================================================
-   7. RESPONSIVIDADE (Telas menores/Celulares)
+   7. ADAPTAÇÃO PARA CELULARES (RESPONSIVO)
    ========================================================================== */
 @media (max-width: 480px) {
     .botoes-grid {

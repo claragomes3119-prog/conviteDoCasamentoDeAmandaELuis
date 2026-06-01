@@ -3,143 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>46 Anos do Melhor Pai!</title>
+    <title>Casamento Amanda e Luís</title>
+    
+    <!-- Fontes do Google (Cursiva elegante e Moderna limpa) -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Link para o arquivo CSS externo (caso use separado) -->
     <link rel="stylesheet" href="style.css">
-    <script>
-        function dispararChuvaDeConfetes() {
-            const duration = 10 * 1000, animationEnd = Date.now() + duration;
-            let canvas = document.getElementById('canvas-confetes');
-            if (!canvas) {
-                canvas = document.createElement('canvas'); canvas.id = 'canvas-confetes';
-                canvas.style = 'position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:99999';
-                document.body.appendChild(canvas);
-            }
-            const ctx = canvas.getContext('2d');
-            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-            const colors = ['#ff0055', '#00ffcc', '#9900ff', '#ffcc00', '#ff00ff', '#00ff00', '#ff5500', '#0066ff'], particles = [];
-            window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
-            function criar(lado) {
-                return {
-                    x: lado === 'esquerda' ? 0 : canvas.width, y: canvas.height * 0.6,
-                    vx: lado === 'esquerda' ? (Math.random() * 9 + 5) : -(Math.random() * 9 + 5),
-                    vy: -(Math.random() * 14 + 9), size: Math.random() * 7 + 6,
-                    color: colors[Math.floor(Math.random() * colors.length)], gravity: 0.25,
-                    rotation: Math.random() * 360, rSpeed: Math.random() * 6 - 3
-                };
-            }
-            function frame() {
-                if (Date.now() > animationEnd) { ctx.clearRect(0, 0, canvas.width, canvas.height); canvas.remove(); return; }
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                if (particles.length < 180) { particles.push(criar('esquerda')); particles.push(criar('direita')); }
-                for (let i = particles.length - 1; i >= 0; i--) {
-                    const p = particles[i]; p.x += p.vx; p.y += p.vy; p.vy += p.gravity; p.rotation += p.rSpeed;
-                    ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rotation * Math.PI / 180);
-                    ctx.fillStyle = p.color; ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size); ctx.restore();
-                    if (p.y > canvas.height) particles.splice(i, 1);
-                }
-                requestAnimationFrame(frame);
-            }
-            frame();
-        }
-    </script>
 </head>
 <body>
 
-        <audio id="musica-fundo" src="musicafundo/WhatsApp Audio 2026-05-31 at 12.20.49.mp4"></audio>
+    <!-- Container Geral que gerencia a animação -->
+    <div class="wrapper-casamento" id="wrapperConvite">
+        
+        <!-- ==========================================
+             1. ENVELOPE FECHADO (ABAS LATERAIS)
+             ========================================== -->
+        <div class="envelope">
+            <div class="aba aba-esquerda"></div>
+            <div class="aba aba-direita"></div>
+        </div>
 
-    <div id="tela-bloqueio">
-        <span style="font-size: 3.5rem; margin-bottom: 10px; animation: pulse 1s infinite alternate;">🎁</span>
-        <h1>Pai, preparei uma pequena surpresa...</h1>
-        <p>Clique abaixo para abrir !</p>
-        <button class="btn-entrar" onclick="revelarSitePrincipal()">ABRIR SURPRESA 🎉</button>
-    </div>
+        <!-- ==========================================
+             2. BOTÃO DO SELO DE CERA (CLIQUE AQUI)
+             ========================================== -->
+        <div class="selo-container" onclick="abrirConvite()">
+            <div class="selo-cera">CH</div>
+            <div class="texto-clique">Clique para abrir 👇</div>
+        </div>
 
-    <div id="conteudo-site" style="display: none;">
-        <header>
-            <div class="header-conteudo">
-                <h2>🎉 46 Anos do Melhor Pai : Wilas Robert Gomes🎉</h2>
-                <p>Uma homenagem simples e singela para o melhor pai do universo inteiro!</p>
+        <!-- ==========================================
+             3. CONVITE REAL (CONTEÚDO INTERNO)
+             ========================================== -->
+        <div class="convite-container">
+            
+            <!-- Topo decorativo -->
+            <div class="header-coracao">♥</div>
+            <div class="chamada">
+                Com muita alegria,<br>
+                convidamos você para celebrar<br>
+                o nosso casamento!
             </div>
-        </header>
 
-        <main class="container">
-            <!-- CARROSSEL DE IMAGENS AUTOMÁTICO -->
-            <section class="bloco-conteudo">
-                <h3 class="titulo-carrossel">📸 Fotos Do Pai Mais Legal Do Mundo</h3>
-                <div class="carrossel-container">
-                    <div class="carrossel-slides">
-                        <div class="slide active"><img src="imagens/f1.jpg" alt="Foto 1"></div>
-                        <div class="slide"><img src="imagens/f2.jpg" alt="Foto 2"></div>
-                        <div class="slide"><img src="imagens/f3.jpg" alt="Foto 3"></div>
-                        <div class="slide"><img src="imagens/f4.jpg" alt="Foto 4"></div>
-                        <div class="slide"><img src="imagens/f5.jpg" alt="Foto 5"></div>
-                     
-                    </div>
+            <!-- Nomes dos Noivos -->
+            <div class="nomes">
+                Amanda
+                <span>e</span>
+                Luís
+            </div>
+
+            <!-- Grid com Informações de Data, Hora e Local -->
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="icone">📅</div>
+                    <strong>18 de Dezembro</strong>
+                    <p>de 2026</p>
                 </div>
-            </section>
-
-            <!-- QUADRO CENTRAL DE HOMENAGEM COM UMA MENSAGEM -->
-            <section class="bloco-conteudo quadro-mensagem-colorido">
-                <div style="text-align: center; padding: 10px;">
-                    <span style="font-size: 3.5rem; display: block; animation: float 2s infinite ease-in-out;">❤️</span>
-                    <h3 style="border-bottom: none; margin-bottom: 15px; margin-top: 10px; color: #fff;">Querido Pai,</h3>
-                    <p style="font-size: 1.25rem; line-height: 1.8; color: #252121; max-width: 700px; margin: 0 auto; font-style: italic; font-weight: 500;">
-                        "Pai, o senhor é o meu porto seguro, meu guia, a minha maior inspiração ! Tenho orgulho de ser sua filha e de estar hoje, no dia 31/05/2026 celebrando o seu aniversário! Obrigada por cada sacrifício que o senhor fez por mim, por cada incentivo, motivação, por cada abraço e por todo o carinho ! Saiba que a minha meta é crescer e ter no mínimo 1% de sua sabedoria e bondade. Não existem palavras que possam expressar o meu amor e carinho pelo senhor... FELIZ ANIVERSÁRIO!!!!!!   
-                    </p>
+                <div class="info-item">
+                    <div class="icone">🕒</div>
+                    <strong>Às 19h00</strong>
                 </div>
-            </section>
-
-            <!-- MURAL DE MENSAGENS COM CORES DINÂMICAS -->
-            <section class="bloco-conteudo">
-                <h3 class="titulo-mural">💬 Mensagens do Mural</h3>
-                <div class="mural">
-                    <div class="recado cor-rosa">
-                        <strong>Como Ser Humano</strong>
-                        <p>"Minha inspiração de vida, meu maior exemplo"</p>
-                    </div>
-                    <div class="recado cor-azul">
-                        <strong>Como Amigo </strong>
-                        <p>"Aquele amigo de todas as horas, minutos e dias ! O melhor conselheiro!"</p>
-                    </div>
-                    <div class="recado cor-verde">
-                        <strong>Como Pai</strong>
-                        <p>"O MELHOR PAI DO MUNDO ! O meu porto seguro, o meu super herói sem capa (que usa um jaleco de oficina), o meu incrível Hulk ! </p>
-                    </div>
+                <div class="info-item">
+                    <div class="icone">📍</div>
+                    <strong>Espaço Villa Verde</strong>
+                    <p>Rua das Flores, 123<br>Jardim das Palmeiras<br>São Paulo - SP</p>
                 </div>
-            </section>
-        </main>
+            </div>
 
-        <footer>
-            <p>Ter o senhor como pai sempre foi e sempre será o  meu maior orgulho! ❤️</p>
-        </footer>
+            <!-- Frase romântica -->
+            <div class="frase-efeito">Sua presença tornará este dia ainda mais especial!</div>
+
+            <!-- Grid de Botões de Ação Interativos -->
+            <div class="botoes-grid">
+                
+                <!-- Card 1: Lista de Presentes -->
+                <div class="card-link">
+                    <div>
+                        <h3>Lista de Presentes</h3>
+                        <p>Escolhemos com carinho cada item da nossa lista.</p>
+                    </div>
+                    <!-- Substitua o '#' pelo link real da sua lista de presentes -->
+                    <a href="#" class="btn-link" target="_blank">🔗 Ver Lista</a>
+                </div>
+
+                <!-- Card 2: Lista de Convidados -->
+                <div class="card-link">
+                    <div>
+                        <h3>Lista de Convidados</h3>
+                        <p>Confira as listas oficiais e mesas do evento.</p>
+                    </div>
+                    <!-- Substitua o '#' pelo link real correspondente -->
+                    <a href="#" class="btn-link" target="_blank">🔗 Ver Lista</a>
+                </div>
+
+                <!-- Card 3: Confirmar Presença -->
+                <div class="card-link">
+                    <div>
+                        <h3>Confirmar Presença</h3>
+                        <p>Confirme sua presença até o dia 18/11/2026.</p>
+                    </div>
+                    <!-- Substitua o '#' pelo link do seu formulário de RSVP -->
+                    <a href="#" class="btn-link" target="_blank">🔗 Confirmar RSVP</a>
+                </div>
+
+                <!-- Card 4: Informações do Casamento -->
+                <div class="card-link">
+                    <div>
+                        <h3>Site do Casamento</h3>
+                        <p>Encontre todas as informações do grande dia.</p>
+                    </div>
+                    <!-- Substitua o '#' pelo link principal -->
+                    <a href="#" class="btn-link" target="_blank">🔗 Acessar Site</a>
+                </div>
+
+            </div>
+
+            <!-- Assinatura do rodapé -->
+            <div class="rodape">Com amor, Amanda e Luís</div>
+        </div>
+
     </div>
 
+    <!-- ==========================================
+         4. SCRIPT JAVASCRIPT (GATILHO DE ABERTURA)
+         ========================================== -->
     <script>
-        function revelarSitePrincipal() {
-            const musica = document.getElementById('musica-fundo');
-            musica.play().catch(function(error) { console.log("Áudio liberado pós clique."); });
-            document.getElementById('tela-bloqueio').style.display = 'none';
-            document.getElementById('conteudo-site').style.display = 'block';
-            
-            dispararChuvaDeConfetes();
-            iniciarIntervaloCarrossel(); 
-            
-            const imagensDoCarrossel = document.querySelectorAll('.slide img');
-            imagensDoCarrossel.forEach(img => {
-                img.style.width = '100%';
-                img.style.height = '100%';
-                img.style.objectFit = 'contain';
-                img.style.display = 'block';
-            });
+        function abrirConvite() {
+            // Adiciona a classe 'aberto' que ativa as transições em 3D do CSS
+            const wrapper = document.getElementById('wrapperConvite');
+            wrapper.classList.add('aberto');
         }
-        let slideIndex = 0, carrosselTimer;
-        function mostrarSlide() {
-            const slides = document.querySelectorAll('.slide'); if (slides.length === 0) return;
-            if (slideIndex >= slides.length) slideIndex = 0;
-            slides.forEach(slide => slide.classList.remove('active')); slides[slideIndex].classList.add('active');
-        }
-        function mudarSlide(n) { clearInterval(carrosselTimer); slideIndex += n; mostrarSlide(); iniciarIntervaloCarrossel(); }
-        function iniciarIntervaloCarrossel() { carrosselTimer = setInterval(() => { slideIndex++; mostrarSlide(); }, 4000); }
     </script>
+
 </body>
 </html>
