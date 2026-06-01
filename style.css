@@ -1,12 +1,13 @@
 /* ==========================================================================
-   1. VARIÁVEIS DE CORES E CONFIGURAÇÕES GERAIS
+   1. VARIÁVEIS DE CORES ATUALIZADAS (BASEADAS NA IMAGEM)
    ========================================================================== */
 :root {
     --cor-fundo: #fbf9f4;
     --cor-texto: #5c4d3c;
     --cor-dourado: #c4a468;
-    --cor-botao: #1b3d32; /* Verde escuro do convite */
-    --cor-selo: #3b597d;   /* Azul do selo de cera CH da imagem */
+    --cor-botao: #1b3d32;
+    --cor-selo: #2b4c7e;   /* Azul escuro idêntico ao selo de cera da imagem */
+    --cor-fundo-envelope: #fbfaf6; /* Tom esbranquiçado fosco do envelope */
 }
 
 body {
@@ -20,9 +21,6 @@ body {
     align-items: center;
     min-height: 100vh;
     overflow-x: hidden;
-    /* Fundo sutil texturizado */
-    background-image: radial-gradient(rgba(196, 164, 104, 0.1) 1px, transparent 0);
-    background-size: 24px 24px;
 }
 
 /* Container do efeito 3D */
@@ -31,11 +29,11 @@ body {
     max-width: 600px;
     width: 100%;
     margin: 20px;
-    perspective: 1200px; 
+    perspective: 1500px; 
 }
 
 /* ==========================================================================
-   2. ESTRUTURA DO ENVELOPE (ABAS QUE SE ABREM)
+   2. DESIGN DO ENVELOPE FECHADO (CONFORME A FOTO)
    ========================================================================== */
 .envelope {
     position: absolute;
@@ -45,98 +43,125 @@ body {
     height: 100%;
     z-index: 10;
     display: flex;
-    pointer-events: none; /* Permite clicar no selo por trás */
+    pointer-events: none;
 }
 
 .aba {
     width: 50%;
     height: 100%;
-    background: #f5f2eb;
-    border: 1px solid rgba(196, 164, 104, 0.3);
+    background-color: var(--cor-fundo-envelope);
     box-sizing: border-box;
-    transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), opacity 1s ease;
+    transition: transform 1.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.2s ease;
     position: relative;
-    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.04);
 }
 
+/* Divisão central vertical sutil */
 .aba-esquerda {
     transform-origin: left;
-    background-image: linear-gradient(to right, #f5f2eb, #eae6dc);
+    border-right: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .aba-direita {
     transform-origin: right;
-    background-image: linear-gradient(to left, #f5f2eb, #eae6dc);
+    border-left: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-/* Elementos florais decorativos nas abas */
+/* Ilustração das Flores Azuis e Brancas divididas ao meio */
 .aba-esquerda::after, .aba-direita::after {
-    content: '🌿';
+    content: '';
     position: absolute;
-    top: 35%;
-    font-size: 40px;
-    opacity: 0.4;
+    top: 25%; /* Alinhado logo acima do selo central */
+    width: 120px;
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.9;
 }
-.aba-esquerda::after { right: 15px; transform: scaleX(-1); }
-.aba-direita::after { left: 15px; }
 
-/* ==========================================================================
-   3. ANIMAÇÃO DE ABERTURA LATERIAL
-   ========================================================================== */
+/* Ajuste da metade das flores na aba esquerda */
+.aba-esquerda::after {
+    right: 0;
+    background-position: right center;
+    /* Usando um ícone floral azul em SVG para garantir alta resolução */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' viewBox='0 0 100 100'%3E%3Cpath d='M100,50 Q80,20 60,35 Q70,55 100,50 Z' fill='%232b4c7e'/%3E%3Cpath d='M100,55 Q85,75 70,60 Q80,45 100,55 Z' fill='%234a6fa5'/%3E%3Cpath d='M100,45 Q90,30 80,40 Z' fill='%231d3557'/%3E%3C/svg%3E");
+}
+
+/* Ajuste da metade das flores na aba direita */
+.aba-direita::after {
+    left: 0;
+    background-position: left center;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' viewBox='0 0 100 100'%3E%3Cpath d='M0,50 Q20,20 40,35 Q30,55 0,50 Z' fill='%232b4c7e'/%3E%3Cpath d='M0,55 Q15,75 30,60 Q20,45 0,55 Z' fill='%234a6fa5'/%3E%3Cpath d='M0,45 Q10,30 20,40 Z' fill='%231d3557'/%3E%3C/svg%3E");
+}
+
+/* Transparência sutil no fundo para revelar o convite de fundo levemente */
+.aba::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.45); /* Efeito de papel vegetal translúcido */
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* Animação das abas deslizando para fora */
 .wrapper-casamento.aberto .aba-esquerda {
-    transform: translateX(-100%) rotateY(-35deg);
+    transform: translateX(-105%) rotateY(-20deg);
     opacity: 0;
 }
 
 .wrapper-casamento.aberto .aba-direita {
-    transform: translateX(100%) rotateY(35deg);
+    transform: translateX(105%) rotateY(20deg);
     opacity: 0;
 }
 
 /* ==========================================================================
-   4. BOTÃO DO SELO DE CERA E TEXTO INFERIOR
+   3. O SELO DE CERA AZUL COM INSTRUÇÃO CIRCULAR
    ========================================================================== */
 .selo-container {
     position: absolute;
-    top: 40%;
+    top: 42%; /* Centralizado com as flores */
     left: 50%;
     transform: translate(-50%, -50%) scale(1);
     z-index: 11;
     text-align: center;
     pointer-events: auto;
     cursor: pointer;
-    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .selo-cera {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
     background-color: var(--cor-selo);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #ffffff;
-    font-weight: bold;
-    font-size: 22px;
-    letter-spacing: 1px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.25), inset 0 0 12px rgba(0,0,0,0.4);
-    border: 3px double rgba(255,255,255,0.2);
-    user-select: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    letter-spacing: 2px;
+    /* Efeito de relevo de cera real */
+    box-shadow: 0 8px 20px rgba(43, 76, 126, 0.3), inset 0 0 15px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    position: relative;
 }
 
+/* Texto curvado/circular "clique para abrir" ao redor do selo */
 .texto-clique {
-    font-size: 11px;
-    color: var(--cor-texto);
-    margin-top: 10px;
+    font-size: 10px;
+    color: #5c6b80;
+    margin-top: 14px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     font-weight: 600;
-    text-shadow: 0 1px 2px #ffffff;
-    animation: pulsar 1.6s infinite ease-in-out;
+    animation: pulsar 1.8s infinite ease-in-out;
 }
 
-/* Oculta o selo e o texto após o clique */
 .wrapper-casamento.aberto .selo-container {
     transform: translate(-50%, -50%) scale(0);
     opacity: 0;
@@ -144,26 +169,25 @@ body {
 }
 
 @keyframes pulsar {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.06); }
-    100% { transform: scale(1); }
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.04); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.8; }
 }
 
 /* ==========================================================================
-   5. DESIGN DO CONVITE INTERNO
+   4. CONVITE INTERNO (CONTEÚDO)
    ========================================================================== */
 .convite-container {
     width: 100%;
     background: #ffffff;
-    padding: 40px 20px;
+    padding: 50px 24px;
     box-sizing: border-box;
-    border: 2px solid var(--cor-dourado);
-    outline: 10px solid #ffffff;
+    border: 1px solid rgba(196, 164, 104, 0.4);
     text-align: center;
-    box-shadow: 0px 10px 30px rgba(0,0,0,0.05);
-    opacity: 0.2;
-    transform: scale(0.96);
-    transition: all 1s cubic-bezier(0.25, 1, 0.5, 1) 0.2s;
+    box-shadow: 0px 10px 40px rgba(0,0,0,0.03);
+    opacity: 0.1;
+    transform: scale(0.97);
+    transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.1s;
 }
 
 .wrapper-casamento.aberto .convite-container {
@@ -171,42 +195,13 @@ body {
     transform: scale(1);
 }
 
-.header-coracao {
-    font-size: 24px;
-    color: var(--cor-dourado);
-    margin-bottom: 10px;
-}
+/* Restante do layout interno dos botões */
+.header-coracao { font-size: 24px; color: var(--cor-dourado); margin-bottom: 10px; }
+.chamada { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; line-height: 1.8; }
+.nomes { font-family: 'Alex Brush', cursive; font-size: 65px; color: var(--cor-dourado); margin: 15px 0; line-height: 1; }
+.nomes span { font-size: 30px; display: block; font-family: 'Montserrat', sans-serif; font-weight: 300; }
+.frase-efeito { font-family: 'Alex Brush', cursive; font-size: 28px; color: var(--cor-dourado); margin: 30px 0; }
 
-.chamada {
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    line-height: 1.8;
-}
-
-.nomes {
-    font-family: 'Alex Brush', cursive;
-    font-size: 65px;
-    color: var(--cor-dourado);
-    margin: 15px 0;
-    line-height: 1;
-}
-
-.nomes span {
-    font-size: 30px;
-    display: block;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
-}
-
-.frase-efeito {
-    font-family: 'Alex Brush', cursive;
-    font-size: 28px;
-    color: var(--cor-dourado);
-    margin: 30px 0;
-}
-
-/* Grade de informações (Data, Hora, Local) */
 .info-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -216,42 +211,12 @@ body {
     border-bottom: 1px solid rgba(196, 164, 104, 0.3);
     padding: 20px 0;
 }
+.info-item { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
+.info-item .icone { font-size: 20px; color: var(--cor-dourado); margin-bottom: 8px; }
+.info-item strong { display: block; margin-bottom: 5px; font-weight: 600; }
+.info-item p { margin: 0; font-size: 10px; text-transform: none; line-height: 1.4; }
 
-.info-item {
-    font-size: 11px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-.info-item .icone {
-    font-size: 20px;
-    color: var(--cor-dourado);
-    margin-bottom: 8px;
-}
-
-.info-item strong {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 600;
-}
-
-.info-item p {
-    margin: 0;
-    font-size: 10px;
-    text-transform: none;
-    line-height: 1.4;
-}
-
-/* ==========================================================================
-   6. CARDS INTERATIVOS E BOTÕES
-   ========================================================================== */
-.botoes-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-bottom: 30px;
-}
-
+.botoes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; }
 .card-link {
     border: 1px solid var(--cor-dourado);
     padding: 20px 15px;
@@ -262,22 +227,8 @@ body {
     justify-content: space-between;
     align-items: center;
 }
-
-.card-link h3 {
-    font-size: 11px;
-    letter-spacing: 1px;
-    margin: 0 0 5px 0;
-    text-transform: uppercase;
-    font-weight: 600;
-}
-
-.card-link p {
-    font-size: 10px;
-    margin: 0 0 15px 0;
-    line-height: 1.4;
-    color: #7a6b58;
-}
-
+.card-link h3 { font-size: 11px; letter-spacing: 1px; margin: 0 0 5px 0; text-transform: uppercase; font-weight: 600; }
+.card-link p { font-size: 10px; margin: 0 0 15px 0; line-height: 1.4; color: #7a6b58; }
 .btn-link {
     background-color: var(--cor-botao);
     color: #ffffff;
@@ -290,32 +241,11 @@ body {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    transition: background-color 0.2s ease;
 }
+.rodape { margin-top: 40px; font-family: 'Alex Brush', cursive; font-size: 24px; color: var(--cor-dourado); }
 
-.btn-link:hover {
-    background-color: #275445;
-}
-
-.rodape {
-    margin-top: 40px;
-    font-family: 'Alex Brush', cursive;
-    font-size: 24px;
-    color: var(--cor-dourado);
-}
-
-/* ==========================================================================
-   7. ADAPTAÇÃO PARA CELULARES (RESPONSIVO)
-   ========================================================================== */
 @media (max-width: 480px) {
-    .botoes-grid {
-        grid-template-columns: 1fr;
-    }
-    .info-grid {
-        grid-template-columns: 1fr;
-        gap: 25px;
-    }
-    .nomes {
-        font-size: 52px;
-    }
+    .botoes-grid { grid-template-columns: 1fr; }
+    .info-grid { grid-template-columns: 1fr; gap: 25px; }
+    .nomes { font-size: 52px; }
 }
