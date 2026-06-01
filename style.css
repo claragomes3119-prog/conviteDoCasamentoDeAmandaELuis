@@ -1,12 +1,11 @@
 /* ==========================================================================
-   1. PALETA DE CORES ATUALIZADA (NOVO DESIGN)
+   1. PALETA DE CORES ATUALIZADA (BEGE, MARINHO E DOURADO)
    ========================================================================== */
 :root {
-    --cor-bege-fundo: #eaddca;    /* Bege de fundo texturizado */
-    --cor-bege-papel: #f3e6ce;    /* Cor de papel do convite interno */
-    --cor-marinho: #16263e;       /* Azul-marinho profundo das letras e botões */
-    --cor-dourado: #c5a059;       /* Dourado metálico das molduras e ícones */
-    --cor-envelope: #fbf9f4;      /* Tom translúcido do envelope externo */
+    --cor-bege-fundo: #e5dac4;    /* Bege texturizado do fundo da tela */
+    --cor-marinho: #0f1c30;       /* Azul-marinho profundo para textos e botões */
+    --cor-dourado: #d4af37;       /* Dourado metálico para os detalhes */
+    --cor-envelope: #fbf9f4;      /* Cor fosca do papel do envelope */
 }
 
 body {
@@ -20,11 +19,12 @@ body {
     align-items: center;
     min-height: 100vh;
     overflow-x: hidden;
-    background-image: radial-gradient(rgba(22, 38, 62, 0.05) 1px, transparent 0);
-    background-size: 20px 20px;
+    /* Textura de pontilhado sutil ao fundo */
+    background-image: radial-gradient(rgba(15, 28, 48, 0.04) 1px, transparent 0);
+    background-size: 24px 24px;
 }
 
-/* Container do efeito 3D */
+/* Container que gerencia a perspectiva 3D */
 .wrapper-casamento {
     position: relative;
     max-width: 550px;
@@ -34,7 +34,7 @@ body {
 }
 
 /* ==========================================================================
-   2. ESTILO DO ENVELOPE (FECHADO)
+   2. ESTILO DO ENVELOPE E ABAS (SISTEMA DE ABERTURA)
    ========================================================================== */
 .envelope {
     position: absolute;
@@ -59,26 +59,15 @@ body {
 
 .aba-esquerda {
     transform-origin: left;
-    border-right: 1px solid rgba(22, 38, 62, 0.05);
+    border-right: 1px solid rgba(15, 28, 48, 0.05);
 }
 
 .aba-direita {
     transform-origin: right;
-    border-left: 1px solid rgba(22, 38, 62, 0.05);
+    border-left: 1px solid rgba(15, 28, 48, 0.05);
 }
 
-.aba::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.4); 
-    top: 0;
-    left: 0;
-    z-index: -1;
-}
-
-/* Ramos Florais em Azul Marinho nas Abas Externas */
+/* Detalhes florais em azul-marinho nas abas externas antes de abrir */
 .aba-esquerda::after, .aba-direita::after {
     content: '';
     position: absolute;
@@ -87,27 +76,27 @@ body {
     height: 120px;
     background-size: contain;
     background-repeat: no-repeat;
-    opacity: 0.95;
+    opacity: 0.9;
 }
 
 .aba-esquerda::after {
     right: 0;
     background-position: right center;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' viewBox='0 0 100 100'%3E%3Cpath d='M100,50 Q80,20 60,35 Q70,55 100,50 Z' fill='%2316263e'/%3E%3Cpath d='M100,55 Q85,75 70,60 Q80,45 100,55 Z' fill='%232a3f5f'/%3E%3Cpath d='M100,45 Q90,30 80,40 Z' fill='%23c5a059'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' viewBox='0 0 100 100'%3E%3Cpath d='M100,50 Q80,20 60,35 Q70,55 100,50 Z' fill='%230f1c30'/%3E%3Cpath d='M100,55 Q85,75 70,60 Q80,45 100,55 Z' fill='%231b2e4b'/%3E%3Cpath d='M100,45 Q90,30 80,40 Z' fill='%23d4af37'/%3E%3C/svg%3E");
 }
 
 .aba-direita::after {
     left: 0;
     background-position: left center;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' viewBox='0 0 100 100'%3E%3Cpath d='M0,50 Q20,20 40,35 Q30,55 0,50 Z' fill='%2316263e'/%3E%3Cpath d='M0,55 Q15,75 30,60 Q20,45 0,55 Z' fill='%232a3f5f'/%3E%3Cpath d='M0,45 Q10,30 20,40 Z' fill='%23c5a059'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' viewBox='0 0 100 100'%3E%3Cpath d='M0,50 Q20,20 40,35 Q30,55 0,50 Z' fill='%230f1c30'/%3E%3Cpath d='M0,55 Q15,75 30,60 Q20,45 0,55 Z' fill='%231b2e4b'/%3E%3Cpath d='M0,45 Q10,30 20,40 Z' fill='%23d4af37'/%3E%3C/svg%3E");
 }
 
-/* Animação de Abertura */
+/* Gatilhos de animação controlados pelo JS */
 .wrapper-casamento.aberto .aba-esquerda { transform: translateX(-105%) rotateY(-20deg); opacity: 0; }
 .wrapper-casamento.aberto .aba-direita { transform: translateX(105%) rotateY(20deg); opacity: 0; }
 
 /* ==========================================================================
-   3. BOTÃO DO SELO DE CERA
+   3. BOTÃO CENTRAL DO SELO DE CERA
    ========================================================================== */
 .selo-container {
     position: absolute;
@@ -132,7 +121,8 @@ body {
     color: #ffffff;
     font-size: 22px;
     letter-spacing: 2px;
-    box-shadow: 0 8px 20px rgba(22, 38, 62, 0.4), inset 0 0 15px rgba(0, 0, 0, 0.6);
+    font-weight: 500;
+    box-shadow: 0 8px 20px rgba(15, 28, 48, 0.4), inset 0 0 15px rgba(0, 0, 0, 0.6);
     border: 2px solid rgba(255, 255, 255, 0.15);
 }
 
@@ -155,19 +145,24 @@ body {
 }
 
 /* ==========================================================================
-   4. O CONVITE INTERNO REFORMULADO
+   4. CONVITE INTERNO (INTEGRAÇÃO COMPLETA COM A IMAGEM DE FUNDO LIMPA)
    ========================================================================== */
 .convite-container {
     width: 100%;
-    background: var(--cor-bege-papel);
-    padding: 50px 30px;
+    min-height: 720px;
     box-sizing: border-box;
-    text-align: center;
+    padding: 70px 45px 50px 45px; /* Padding largo para afastar textos das flores */
     position: relative;
-    border: 1px solid var(--cor-dourado);
-    outline: 4px solid var(--cor-bege-papel);
-    box-shadow: 0px 10px 40px rgba(0,0,0,0.06), 0 0 0 6px var(--cor-dourado);
-    opacity: 0.1;
+    
+    /* Configuração da imagem de fundo enviada */
+    background-image: url('convite-fundo.jpg');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.15);
+    
+    opacity: 0;
     transform: scale(0.97);
     transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.1s;
 }
@@ -177,10 +172,11 @@ body {
     transform: scale(1);
 }
 
+/* Estilização dos textos internos por cima do fundo */
 .header-coracao {
-    font-size: 28px;
+    font-size: 24px;
     color: var(--cor-dourado);
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     line-height: 1;
 }
 
@@ -192,11 +188,13 @@ body {
     font-weight: 500;
 }
 
+/* Forçando a aplicação correta da fonte manuscrita nos nomes */
 .nomes {
-    font-family: 'Alex Brush', cursive;
-    font-size: 72px;
+    font-family: 'Alex Brush', 'Brush Script MT', cursive !important;
+    font-size: 76px;
+    font-weight: 400;
     color: var(--cor-marinho);
-    margin: 20px 0;
+    margin: 15px 0;
     line-height: 0.9;
 }
 
@@ -205,44 +203,41 @@ body {
     display: block;
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;
+    color: var(--cor-dourado);
     margin: 5px 0;
-    color: var(--cor-dourado);
 }
 
-.nomes::before, .nomes::after {
-    content: ' 🌿 ';
-    font-size: 14px;
-    color: var(--cor-dourado);
-    display: inline-block;
-    vertical-align: middle;
-    opacity: 0.7;
-}
-
+/* Grid das informações com réguas separadoras verticais */
 .info-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
     margin: 35px 0;
-    border-top: 1px solid rgba(197, 160, 89, 0.4);
-    border-bottom: 1px solid rgba(197, 160, 89, 0.4);
-    padding: 20px 0;
+    border-top: 1px solid rgba(212, 175, 55, 0.3);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    padding: 18px 0;
 }
 
 .info-item {
     font-size: 10.5px;
     letter-spacing: 1px;
     text-transform: uppercase;
+    position: relative;
 }
 
-.info-item .icone {
-    font-size: 22px;
-    color: var(--cor-dourado);
-    margin-bottom: 6px;
+.info-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -5px;
+    top: 20%;
+    height: 60%;
+    width: 1px;
+    background-color: rgba(212, 175, 55, 0.3);
 }
 
 .info-item strong {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
     font-weight: 600;
 }
 
@@ -250,28 +245,32 @@ body {
     margin: 0;
     font-size: 9.5px;
     text-transform: none;
-    line-height: 1.5;
+    line-height: 1.4;
+    color: #4a5464;
 }
 
 .frase-efeito {
-    font-family: 'Alex Brush', cursive;
-    font-size: 30px;
+    font-family: 'Alex Brush', cursive !important;
+    font-size: 32px;
     color: var(--cor-dourado);
-    margin: 30px 0;
+    margin: 25px 0;
 }
 
+/* ==========================================================================
+   5. BLOCOS INTERATIVOS (LINKS DE ACESSO)
+   ========================================================================== */
 .botoes-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 .card-link {
-    border: 1px solid rgba(197, 160, 89, 0.5);
+    border: 1px solid rgba(212, 175, 55, 0.4);
     padding: 18px 12px;
     border-radius: 6px;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.45); /* Fundo sutil para legibilidade */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -281,7 +280,7 @@ body {
 .card-link h3 {
     font-size: 11px;
     letter-spacing: 1px;
-    margin: 0 0 4px 0;
+    margin: 0 0 5px 0;
     text-transform: uppercase;
     font-weight: 600;
 }
@@ -293,6 +292,7 @@ body {
     color: #4a5a73;
 }
 
+/* Botões sólidos em Azul Marinho */
 .btn-link {
     background-color: var(--cor-marinho);
     color: #ffffff;
@@ -305,12 +305,12 @@ body {
     align-items: center;
     justify-content: center;
     gap: 6px;
-    transition: opacity 0.2s;
+    transition: background-color 0.2s;
     font-weight: 500;
 }
 
 .btn-link:hover {
-    opacity: 0.9;
+    background-color: #1a2f4c;
 }
 
 .qr-secao {
@@ -319,11 +319,36 @@ body {
     text-transform: uppercase;
     margin: 25px 0 10px 0;
     font-weight: 600;
+    opacity: 0.8;
 }
 
 .rodape {
-    margin-top: 25px;
-    font-family: 'Alex Brush', cursive;
+    margin-top: 20px;
+    font-family: 'Alex Brush', cursive !important;
     font-size: 26px;
     color: var(--cor-dourado);
+}
+
+/* ==========================================================================
+   6. RESPONSIVIDADE (ADAPTAÇÃO PARA SMARTPHONES)
+   ========================================================================== */
+@media (max-width: 500px) {
+    .botoes-grid {
+        grid-template-columns: 1fr; /* Transforma os botões em uma coluna única */
+    }
+    .info-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .info-item:not(:last-child)::after {
+        display: none; /* Remove divisórias verticais no celular */
+    }
+    .nomes {
+        font-size: 62px;
+    }
+    .convite-container {
+        padding: 55px 25px 40px 25px;
+        min-height: 980px; /* Expande verticalmente para os botões empilhados */
+        background-size: cover; /* Evita que o fundo deforme */
+    }
 }

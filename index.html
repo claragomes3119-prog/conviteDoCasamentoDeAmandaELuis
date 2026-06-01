@@ -5,17 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Casamento Amanda e Luís</title>
     
-    <!-- Fontes Elegantes do Google -->
+    <!-- Importação correta das fontes elegantes do Google -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    <!-- Vinculação do arquivo CSS externo -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Container do efeito 3D -->
     <div class="wrapper-casamento" id="wrapperConvite">
         
         <!-- ENVELOPE FECHADO -->
@@ -24,90 +22,62 @@
             <div class="aba aba-direita"></div>
         </div>
 
-        <!-- BOTÃO DO SELO DE CERA -->
+        <!-- SELO DE ABERTURA -->
         <div class="selo-container" onclick="abrirConvite()">
             <div class="selo-cera">CH</div>
             <div class="texto-clique">Clique para abrir 👇</div>
         </div>
 
-        <!-- CONVITE INTERNO REFORMULADO -->
+        <!-- CONVITE INTERNO COM O DESIGN CORRETO -->
         <div class="convite-container">
-            <div class="header-coracao">♡</div>
             
-            <div class="chamada">
-                Com muita alegria,<br>
-                convidamos você para celebrar<br>
-                o nosso casamento!
+            <!-- Parte Superior (Espaço reservado para o design de fundo que já tem as rosas e os nomes) -->
+            <div class="espaco-topo">
+                <div class="header-coracao">♡</div>
+                <p class="chamada">Com muita alegria, convidamos você para celebrar o nosso casamento!</p>
+                <h1 class="nomes">Amanda <span>e</span> Luís</h1>
+                
+                <div class="info-grid">
+                    <div class="info-item"><strong>18 de Dezembro</strong><p>de 2026</p></div>
+                    <div class="info-item"><strong>Às 19h00</strong></div>
+                    <div class="info-item"><strong>Espaço Villa Verde</strong><p>São Paulo - SP</p></div>
+                </div>
+                
+                <p class="frase-efeito">Sua presença tornará este dia ainda mais especial!</p>
             </div>
 
-            <div class="nomes">
-                Amanda
-                <span>e</span>
-                Luís
-            </div>
-
-            <div class="info-grid">
-                <div class="info-item">
-                    <div class="icone">📅</div>
-                    <strong>18 de Dezembro</strong>
-                    <p>de 2026</p>
-                </div>
-                <div class="info-item">
-                    <div class="icone">🕒</div>
-                    <strong>Às 19h00</strong>
-                </div>
-                <div class="info-item">
-                    <div class="icone">📍</div>
-                    <strong>Espaço Villa Verde</strong>
-                    <p>Rua das Flores, 123<br>Jardim das Palmeiras<br>São Paulo - SP</p>
-                </div>
-            </div>
-
-            <div class="frase-efeito">Sua presença tornará este dia ainda mais especial!</div>
-
+            <!-- Parte Inferior (Os Blocos Interativos do Site) -->
             <div class="botoes-grid">
                 <div class="card-link">
-                    <div>
-                        <h3>Lista de Presentes</h3>
-                        <p>Escolhemos com carinho cada item da nossa lista.</p>
-                    </div>
-                    <a href="https://seulink.com" class="btn-link" target="_blank">🔗 Ver Lista</a>
+                    <h3>Lista de Presentes</h3>
+                    <p>Escolhemos com carinho cada item da nossa lista.</p>
+                    <a href="#" class="btn-link" target="_blank">🔗 Ver Lista</a>
                 </div>
                 <div class="card-link">
-                    <div>
-                        <h3>Lista de Convidados</h3>
-                        <p>Confira a lista oficial e confirmações.</p>
-                    </div>
-                    <a href="https://seulink.com" class="btn-link" target="_blank">🔗 Ver Lista</a>
+                    <h3>Lista de Convidados</h3>
+                    <p>Confira a lista oficial e confirmações.</p>
+                    <a href="#" class="btn-link" target="_blank">🔗 Ver Lista</a>
                 </div>
                 <div class="card-link">
-                    <div>
-                        <h3>Confirme sua Presença</h3>
-                        <p>Confirme sua presença até o dia 18/11/2026.</p>
-                    </div>
-                    <a href="https://seulink.com" class="btn-link" target="_blank">🔗 Confirmar RSVP</a>
+                    <h3>Confirmar Presença</h3>
+                    <p>Confirme sua presença até o dia 18/11/2026.</p>
+                    <a href="#" class="btn-link" target="_blank">🔗 Confirmar RSVP</a>
                 </div>
                 <div class="card-link">
-                    <div>
-                        <h3>Site do Casamento</h3>
-                        <p>Encontre todas as informações reunidas.</p>
-                    </div>
-                    <a href="https://seulink.com" class="btn-link" target="_blank">🔗 Acessar Site</a>
+                    <h3>Site do Casamento</h3>
+                    <p>Encontre todas as informações reunidas.</p>
+                    <a href="#" class="btn-link" target="_blank">🔗 Acessar Site</a>
                 </div>
             </div>
 
-            <div class="qr-secao">Acesse tudo pelo QR Code</div>
-            
             <div class="rodape">Com amor, Amanda e Luís</div>
         </div>
 
     </div>
 
-    <!-- Script de Ativação -->
     <script>
         function abrirConvite() {
-            const wrapper = document.getElementById('wrapperConvite');
-            wrapper.classList.add('aberto');
+            document.getElementById('wrapperConvite').classList.add('aberto');
         }
     </script>
 
