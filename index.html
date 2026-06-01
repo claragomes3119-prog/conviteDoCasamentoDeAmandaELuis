@@ -5,56 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Casamento Amanda e Luís</title>
     
-    <!-- Fontes do Google (Cursiva elegante e Moderna limpa) -->
+    <!-- Fontes Elegantes do Google -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    <!-- Link para o arquivo CSS externo (caso use separado) -->
+    <!-- Vinculação do arquivo CSS externo -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Container Geral que gerencia a animação -->
+    <!-- Container do efeito 3D -->
     <div class="wrapper-casamento" id="wrapperConvite">
         
-        <!-- ==========================================
-             1. ENVELOPE FECHADO (ABAS LATERAIS)
-             ========================================== -->
+        <!-- ENVELOPE FECHADO -->
         <div class="envelope">
             <div class="aba aba-esquerda"></div>
             <div class="aba aba-direita"></div>
         </div>
 
-        <!-- ==========================================
-             2. BOTÃO DO SELO DE CERA (CLIQUE AQUI)
-             ========================================== -->
+        <!-- BOTÃO DO SELO DE CERA -->
         <div class="selo-container" onclick="abrirConvite()">
             <div class="selo-cera">CH</div>
             <div class="texto-clique">Clique para abrir 👇</div>
         </div>
 
-        <!-- ==========================================
-             3. CONVITE REAL (CONTEÚDO INTERNO)
-             ========================================== -->
+        <!-- CONVITE INTERNO REFORMULADO -->
         <div class="convite-container">
+            <div class="header-coracao">♡</div>
             
-            <!-- Topo decorativo -->
-            <div class="header-coracao">♥</div>
             <div class="chamada">
                 Com muita alegria,<br>
                 convidamos você para celebrar<br>
                 o nosso casamento!
             </div>
 
-            <!-- Nomes dos Noivos -->
             <div class="nomes">
                 Amanda
                 <span>e</span>
                 Luís
             </div>
 
-            <!-- Grid com Informações de Data, Hora e Local -->
             <div class="info-grid">
                 <div class="info-item">
                     <div class="icone">📅</div>
@@ -72,66 +63,49 @@
                 </div>
             </div>
 
-            <!-- Frase romântica -->
             <div class="frase-efeito">Sua presença tornará este dia ainda mais especial!</div>
 
-            <!-- Grid de Botões de Ação Interativos -->
             <div class="botoes-grid">
-                
-                <!-- Card 1: Lista de Presentes -->
                 <div class="card-link">
                     <div>
                         <h3>Lista de Presentes</h3>
                         <p>Escolhemos com carinho cada item da nossa lista.</p>
                     </div>
-                    <!-- Substitua o '#' pelo link real da sua lista de presentes -->
-                    <a href="#" class="btn-link" target="_blank">🔗 Ver Lista</a>
+                    <a href="https://seulink.com" class="btn-link" target="_blank">🔗 Ver Lista</a>
                 </div>
-
-                <!-- Card 2: Lista de Convidados -->
                 <div class="card-link">
                     <div>
                         <h3>Lista de Convidados</h3>
-                        <p>Confira as listas oficiais e mesas do evento.</p>
+                        <p>Confira a lista oficial e confirmações.</p>
                     </div>
-                    <!-- Substitua o '#' pelo link real correspondente -->
-                    <a href="#" class="btn-link" target="_blank">🔗 Ver Lista</a>
+                    <a href="https://seulink.com" class="btn-link" target="_blank">🔗 Ver Lista</a>
                 </div>
-
-                <!-- Card 3: Confirmar Presença -->
                 <div class="card-link">
                     <div>
-                        <h3>Confirmar Presença</h3>
+                        <h3>Confirme sua Presença</h3>
                         <p>Confirme sua presença até o dia 18/11/2026.</p>
                     </div>
-                    <!-- Substitua o '#' pelo link do seu formulário de RSVP -->
-                    <a href="#" class="btn-link" target="_blank">🔗 Confirmar RSVP</a>
+                    <a href="https://seulink.com" class="btn-link" target="_blank">🔗 Confirmar RSVP</a>
                 </div>
-
-                <!-- Card 4: Informações do Casamento -->
                 <div class="card-link">
                     <div>
                         <h3>Site do Casamento</h3>
-                        <p>Encontre todas as informações do grande dia.</p>
+                        <p>Encontre todas as informações reunidas.</p>
                     </div>
-                    <!-- Substitua o '#' pelo link principal -->
-                    <a href="#" class="btn-link" target="_blank">🔗 Acessar Site</a>
+                    <a href="https://seulink.com" class="btn-link" target="_blank">🔗 Acessar Site</a>
                 </div>
-
             </div>
 
-            <!-- Assinatura do rodapé -->
+            <div class="qr-secao">Acesse tudo pelo QR Code</div>
+            
             <div class="rodape">Com amor, Amanda e Luís</div>
         </div>
 
     </div>
 
-    <!-- ==========================================
-         4. SCRIPT JAVASCRIPT (GATILHO DE ABERTURA)
-         ========================================== -->
+    <!-- Script de Ativação -->
     <script>
         function abrirConvite() {
-            // Adiciona a classe 'aberto' que ativa as transições em 3D do CSS
             const wrapper = document.getElementById('wrapperConvite');
             wrapper.classList.add('aberto');
         }
